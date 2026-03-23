@@ -105,5 +105,16 @@ CleanCheck$DupGenotype
 
 # Identify potential parent-offspring relationships -----------------------
 
-getMay <- GetMaybeRel (GenoM = geno_clean,  LifeHistData = LH_Clean, Err = 0.025, Module = "par" , quiet = FALSE, Herm="no", MaxPairs = 100000000)
+getMay <- GetMaybeRel (GenoM = geno_Clean,  LifeHistData = LH_Clean, Err = 0.025, Module = "par" , quiet = FALSE, Herm="no", MaxPairs = 100000000)
 
+#List of potential parent-offspring trios 
+
+trios <-getMay$MaybeTrio
+
+write.csv(trios, "Inputs/maybetrios.csv", row.names = FALSE)
+
+#List of potential parent-offspring pairs (where one parent is missing)
+
+duos <- getMay$MaybePar
+
+write.csv(duos, "Inputs/maybeduos.csv", row.names = FALSE)
